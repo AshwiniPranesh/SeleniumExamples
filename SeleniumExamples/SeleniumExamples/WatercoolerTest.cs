@@ -20,20 +20,27 @@ namespace Web.UI.Tests
 
             driver.Navigate().GoToUrl(BaseUrl + "/signin");
 
-            driver.FindElement(By.Id("session_email")).SendKeys("just.testing@email.com");
-            driver.FindElement(By.Id("session_password")).SendKeys("abc123");
+            var loginBox = driver.FindElement(By.Id("session_email"));
+            loginBox.SendKeys("just.testing@email.com");
 
-            driver.FindElement(By.Id("session_submit")).Click();
+            var pwdBox = driver.FindElement(By.Id("session_password"));
+            pwdBox.SendKeys("abc123");
+
+            var submitBtn = driver.FindElement(By.Id("session_submit"));
+            submitBtn.Click();
 
             Assert.AreEqual("ACS Technologies Water Cooler | Just Testing", driver.Title);
 
-            driver.FindElement(By.LinkText("Home")).Click();
+            var homeBtn = driver.FindElement(By.LinkText("Home"));
+            homeBtn.Click();
 
             Assert.AreEqual("ACS Technologies Water Cooler | Home", driver.Title);
 
-            driver.FindElement(By.Id("micropost_content")).SendKeys("This is a test from Selenium");
+            var mpBox = driver.FindElement(By.Id("micropost_content"));
+            mpBox.SendKeys("This is a test from Selenium");
 
-            driver.FindElement(By.Id("micropost_submit")).Click();
+            var submitMp = driver.FindElement(By.Id("micropost_submit"));
+            submitMp.Click();
         }
     }
 }
